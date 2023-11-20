@@ -4,14 +4,15 @@ inputs.forEach((input) => {
   let errorField = document.querySelector(
     `input[id="${input.id}"] + .error-field`
   );
+
   input.addEventListener("blur", (e) => {
     if (!input.checkValidity()) {
       if (input.value == "") {
         let label = document.querySelector(`label[for=${input.id}]`);
         let fieldName = label.textContent;
         errorField.textContent = `${fieldName} is required`;
-      } else {
-        errorField.textContent = input.validationMessage;
+      } else if (input.type == "email") {
+        errorField.textContent = "Not a valid email";
       }
       input.style.backgroundColor = "#FFF0ED";
       input.style.border = "1px solid red";
@@ -19,7 +20,7 @@ inputs.forEach((input) => {
   });
 
   input.addEventListener("keypress", (e) => {
-    if (errorField != "") {
+    if (errorField != "" && input.checkValidity) {
       errorField.textContent = "";
       input.style.backgroundColor = "white";
       input.style.border = "1px solid black";
