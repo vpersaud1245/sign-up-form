@@ -13,6 +13,8 @@ inputs.forEach((input) => {
         errorField.textContent = `${fieldName} is required`;
       } else if (input.type == "email") {
         errorField.textContent = "Not a valid email";
+      } else if (input.type == "tel") {
+        errorField.textContent = "Phone Number is invalid";
       }
       input.style.backgroundColor = "#FFF0ED";
       input.style.border = "1px solid red";
@@ -20,10 +22,29 @@ inputs.forEach((input) => {
   });
 
   input.addEventListener("keypress", (e) => {
-    if (errorField != "" && input.checkValidity) {
+    if (errorField != "" && input.checkValidity()) {
       errorField.textContent = "";
       input.style.backgroundColor = "white";
       input.style.border = "1px solid black";
     }
   });
+
+  if (input.type == "tel") {
+    const validChars = /^[0-9]+$/;
+    input.addEventListener("keydown", (e) => {
+      if (validChars.test(e.key) == false) {
+        console.log(e.key);
+        if (
+          e.key == "Shift" ||
+          e.key == "Tab" ||
+          e.key == "Backspace" ||
+          e.key == "ArrowRight" ||
+          e.key == "ArrowLeft"
+        ) {
+          return;
+        }
+        e.preventDefault();
+      }
+    });
+  }
 });
