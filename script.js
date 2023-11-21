@@ -21,7 +21,7 @@ inputs.forEach((input) => {
     }
   });
 
-  input.addEventListener("keypress", (e) => {
+  input.addEventListener("keyup", (e) => {
     if (errorField != "" && input.checkValidity()) {
       console.log(input.checkValidity());
       errorField.textContent = "";
