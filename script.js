@@ -23,6 +23,7 @@ inputs.forEach((input) => {
 
   input.addEventListener("keypress", (e) => {
     if (errorField != "" && input.checkValidity()) {
+      console.log(input.checkValidity());
       errorField.textContent = "";
       input.style.backgroundColor = "white";
       input.style.border = "1px solid black";
