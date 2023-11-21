@@ -1,3 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+}
+
 .error-field {
   color: red;
+}
+
+.left-container {
+  width: 45%;
+  background-image: url(/images/pharmacist.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.right-container {
+  width: 55%;
 }
