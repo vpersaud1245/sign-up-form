@@ -23,6 +23,8 @@ inputs.forEach((input) => {
         errorField.textContent = "Not a valid email";
       } else if (input.type == "tel") {
         errorField.textContent = "Phone Number is invalid";
+      } else if (input.type == "password") {
+        errorField.textContent = "Password requires minimum 8 characters";
       }
       input.style.backgroundColor = "#FFF0ED";
       input.style.border = "1px solid red";
