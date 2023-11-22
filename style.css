@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -9,6 +10,7 @@ body {
 }
 
 .error-field {
+  min-height: 1rem;
   color: red;
 }
 
@@ -21,4 +23,71 @@ body {
 
 .right-container {
   width: 55%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 6rem 0;
+}
+
+.form-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 auto 2.5rem auto;
+  width: 75%;
+  gap: 0.2rem;
+}
+
+.bottom-heading {
+  color: #fa755d;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  width: 75%;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+.name-container,
+.email-phone-container,
+.password-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 0.3rem;
+}
+
+input:not([type="sumbit"]) {
+  padding: 0.3rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+}
+
+.submit {
+  display: flex;
+  margin: 1rem 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+input[type="submit"] {
+  padding: 0.4rem 6rem;
+  background-color: #fa755d;
+  border: none;
+  color: white;
+  border-radius: 0.5rem;
+}
+
+.have-account {
+  font-size: 0.8rem;
 }
