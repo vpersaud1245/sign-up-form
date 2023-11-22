@@ -16,9 +16,15 @@ body {
 
 .left-container {
   width: 45%;
-  background-image: url(/images/pharmacist.png);
-  background-size: contain;
-  background-repeat: no-repeat;
+  background-color: #63b3f8;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  align-self: center;
+  height: 60%;
+  width: 60%;
 }
 
 .right-container {
@@ -26,7 +32,7 @@ body {
   display: flex;
   flex-direction: column;
   border: 1px solid black;
-  padding: 6rem 0;
+  padding: 9rem 0;
 }
 
 .form-heading {
@@ -39,7 +45,7 @@ body {
 }
 
 .bottom-heading {
-  color: #fa755d;
+  color: #63b3f8;
 }
 
 form {
@@ -82,7 +88,7 @@ input:not([type="sumbit"]) {
 
 input[type="submit"] {
   padding: 0.4rem 6rem;
-  background-color: #fa755d;
+  background-color: #63b3f8;
   border: none;
   color: white;
   border-radius: 0.5rem;
@@ -90,4 +96,21 @@ input[type="submit"] {
 
 .have-account {
   font-size: 0.8rem;
+}
+
+.logo-container {
+  display: flex;
+  color: white;
+  font-size: 2.5rem;
+}
+
+.logo {
+  width: 20%;
+  height: auto;
+  background-color: transparent;
+  margin: 0.3rem;
+}
+
+.title {
+  align-self: center;
 }
