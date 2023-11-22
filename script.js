@@ -42,6 +42,8 @@ inputs.forEach((input) => {
         confirmPasswordField.style.backgroundColor = "#FFF0ED";
         confirmPasswordField.style.border = "1px solid red";
       }
+    } else if (input.type == "tel" && input.checkValidity()) {
+      input.value = input.value.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
     }
   });
 
@@ -98,6 +100,13 @@ inputs.forEach((input) => {
           return;
         }
         e.preventDefault();
+      }
+    });
+
+    input.addEventListener("focus", (e) => {
+      if (input.value.match(/\(\d{3}\) \d{3}-\d{4}/)) {
+        console.log("It matches");
+        input.value = input.value.replace(/\D/g, "");
       }
     });
   }
