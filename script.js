@@ -70,8 +70,8 @@ inputs.forEach((input) => {
         confirmPasswordErrorField.textContent = "";
         passwordField.style.backgroundColor = "white";
         passwordField.style.border = "1px solid black";
-        confirmPasswordFieldField.style.backgroundColor = "white";
-        confirmPasswordFieldField.style.border = "1px solid black";
+        confirmPasswordField.style.backgroundColor = "white";
+        confirmPasswordField.style.border = "1px solid black";
       } else if (
         errorField.textContent != "Passwords do not match" &&
         input.checkValidity()
