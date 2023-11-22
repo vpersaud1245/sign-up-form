@@ -114,3 +114,9 @@ input[type="submit"] {
 .title {
   align-self: center;
 }
+
+.password-length-message {
+  font-size: 1rem;
+  float: right;
+  color: #767676;
+}
