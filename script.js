@@ -8,11 +8,22 @@ const confirmPasswordErrorField = document.querySelector(
   "input[id=password-confirmation]+ .error-field"
 );
 
+function applyInputErrorStyle(inputField) {
+  inputField.style.backgroundColor = "#FFF0ED";
+  inputField.style.border = "1px solid red";
+}
+
+function removeInputErrorStyle(inputField) {
+  inputField.style.backgroundColor = "white";
+  inputField.style.border = "1px solid black";
+}
+
 inputs.forEach((input) => {
   let errorField = document.querySelector(
     `input[id="${input.id}"] + .error-field`
   );
 
+  // APPLY VALIDATION ERRORS
   input.addEventListener("blur", (e) => {
     if (!input.checkValidity()) {
       if (input.value == "") {
@@ -26,8 +37,7 @@ inputs.forEach((input) => {
       } else if (input.type == "password") {
         errorField.textContent = "Password requires minimum 8 characters";
       }
-      input.style.backgroundColor = "#FFF0ED";
-      input.style.border = "1px solid red";
+      applyInputErrorStyle(input);
     } else if (input.id == "password" || input.id == "password-confirmation") {
       if (
         passwordField.value != "" &&
@@ -39,16 +49,16 @@ inputs.forEach((input) => {
         confirmPasswordField.value = "";
         passwordErrorField.textContent = "Passwords do not match";
         confirmPasswordErrorField.textContent = "Passwords do not match";
-        passwordField.style.backgroundColor = "#FFF0ED";
-        passwordField.style.border = "1px solid red";
-        confirmPasswordField.style.backgroundColor = "#FFF0ED";
-        confirmPasswordField.style.border = "1px solid red";
+        applyInputErrorStyle(passwordField);
+        applyInputErrorStyle(confirmPasswordField);
       }
     } else if (input.type == "tel" && input.checkValidity()) {
+      // Format telephone field on blur
       input.value = input.value.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
     }
   });
 
+  // CLEAR VALIDATION ERRORS
   input.addEventListener("keyup", (e) => {
     if (
       errorField != "" &&
@@ -58,8 +68,7 @@ inputs.forEach((input) => {
     ) {
       console.log(input.checkValidity());
       errorField.textContent = "";
-      input.style.backgroundColor = "white";
-      input.style.border = "1px solid black";
+      removeInputErrorStyle(input);
     } else if (
       errorField != "" &&
       (input.id == "password" || input.id == "password-confirmation")
@@ -73,10 +82,8 @@ inputs.forEach((input) => {
       ) {
         passwordErrorField.textContent = "";
         confirmPasswordErrorField.textContent = "";
-        passwordField.style.backgroundColor = "white";
-        passwordField.style.border = "1px solid black";
-        confirmPasswordField.style.backgroundColor = "white";
-        confirmPasswordField.style.border = "1px solid black";
+        removeInputErrorStyle(passwordField);
+        removeInputErrorStyle(confirmPasswordField);
       } else if (
         passwordErrorField.textContent != "Passwords do not match" &&
         confirmPasswordErrorField.textContent == "Passwords do not match" &&
@@ -85,24 +92,22 @@ inputs.forEach((input) => {
         confirmPasswordField.value != ""
       ) {
         confirmPasswordErrorField.textContent = "";
-        confirmPasswordField.style.backgroundColor = "white";
-        confirmPasswordErrorField.border = "1px solid black";
+        removeInputErrorStyle(confirmPasswordField);
       } else if (
         errorField.textContent != "Passwords do not match" &&
         input.checkValidity()
       ) {
         errorField.textContent = "";
-        input.style.backgroundColor = "white";
-        input.style.border = "1px solid black";
+        removeInputErrorStyle(input);
       }
     }
   });
 
+  // Only allow number characters in telephone field
   if (input.type == "tel") {
     const validChars = /^[0-9]+$/;
     input.addEventListener("keydown", (e) => {
       if (validChars.test(e.key) == false) {
-        console.log(e.key);
         if (
           e.key == "Shift" ||
           e.key == "Tab" ||
@@ -116,6 +121,8 @@ inputs.forEach((input) => {
       }
     });
 
+    // Allows user to edit formatted telephone number by
+    // returning it to less than 10 characters
     input.addEventListener("focus", (e) => {
       if (input.value.match(/\(\d{3}\) \d{3}-\d{4}/)) {
         console.log("It matches");
