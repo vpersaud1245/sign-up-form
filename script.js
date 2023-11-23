@@ -28,7 +28,7 @@ inputs.forEach((input) => {
       }
       input.style.backgroundColor = "#FFF0ED";
       input.style.border = "1px solid red";
-    } else if (input.id == "password-confirmation") {
+    } else if (input.id == "password" || input.id == "password-confirmation") {
       if (
         passwordField.value != "" &&
         confirmPasswordField.value != "" &&
