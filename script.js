@@ -40,7 +40,9 @@ inputs.forEach((input) => {
       applyInputErrorStyle(input);
     } else if (
       (input.id == "password" || input.id == "password-confirmation") &&
-      passwordField.value != confirmPasswordField.value
+      passwordField.value != confirmPasswordField.value &&
+      passwordField.value != "" &&
+      confirmPasswordField.value != ""
     ) {
       passwordField.value = "";
       passwordField.focus();
