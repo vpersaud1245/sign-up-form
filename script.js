@@ -65,7 +65,8 @@ inputs.forEach((input) => {
       (input.id == "password" || input.id == "password-confirmation")
     ) {
       if (
-        errorField.textContent == "Passwords do not match" &&
+        passwordErrorField.textContent == "Passwords do not match" &&
+        confirmPasswordErrorField.textContent == "Passwords do not match" &&
         passwordField.value === confirmPasswordField.value &&
         passwordField.value != "" &&
         confirmPasswordField.value != ""
@@ -76,6 +77,16 @@ inputs.forEach((input) => {
         passwordField.style.border = "1px solid black";
         confirmPasswordField.style.backgroundColor = "white";
         confirmPasswordField.style.border = "1px solid black";
+      } else if (
+        passwordErrorField.textContent != "Passwords do not match" &&
+        confirmPasswordErrorField.textContent == "Passwords do not match" &&
+        passwordField.value === confirmPasswordField.value &&
+        passwordField.value != "" &&
+        confirmPasswordField.value != ""
+      ) {
+        confirmPasswordErrorField.textContent = "";
+        confirmPasswordField.style.backgroundColor = "white";
+        confirmPasswordErrorField.border = "1px solid black";
       } else if (
         errorField.textContent != "Passwords do not match" &&
         input.checkValidity()
