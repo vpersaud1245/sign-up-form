@@ -35,23 +35,20 @@ inputs.forEach((input) => {
       } else if (input.type == "tel") {
         errorField.textContent = "Phone Number is invalid";
       } else if (input.type == "password") {
-        errorField.textContent = "Password requires minimum 8 characters";
+        errorField.textContent = "Password At least 8 characters is required";
       }
       applyInputErrorStyle(input);
-    } else if (input.id == "password" || input.id == "password-confirmation") {
-      if (
-        passwordField.value != "" &&
-        confirmPasswordField.value != "" &&
-        !(passwordField.value === confirmPasswordField.value)
-      ) {
-        passwordField.value = "";
-        passwordField.focus();
-        confirmPasswordField.value = "";
-        passwordErrorField.textContent = "Passwords do not match";
-        confirmPasswordErrorField.textContent = "Passwords do not match";
-        applyInputErrorStyle(passwordField);
-        applyInputErrorStyle(confirmPasswordField);
-      }
+    } else if (
+      (input.id == "password" || input.id == "password-confirmation") &&
+      passwordField.value != confirmPasswordField.value
+    ) {
+      passwordField.value = "";
+      passwordField.focus();
+      confirmPasswordField.value = "";
+      passwordErrorField.textContent = "Passwords do not match";
+      confirmPasswordErrorField.textContent = "Passwords do not match";
+      applyInputErrorStyle(passwordField);
+      applyInputErrorStyle(confirmPasswordField);
     } else if (input.type == "tel" && input.checkValidity()) {
       // Format telephone field on blur
       input.value = input.value.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
@@ -106,17 +103,16 @@ inputs.forEach((input) => {
   // Only allow number characters in telephone field
   if (input.type == "tel") {
     const validChars = /^[0-9]+$/;
+    // Lets user still use keyboard to navigate within the field
+    const controlKeys = [
+      "Shift",
+      "Tab",
+      "Backspace",
+      "ArrowRight",
+      "ArrowLeft",
+    ];
     input.addEventListener("keydown", (e) => {
-      if (validChars.test(e.key) == false) {
-        if (
-          e.key == "Shift" ||
-          e.key == "Tab" ||
-          e.key == "Backspace" ||
-          e.key == "ArrowRight" ||
-          e.key == "ArrowLeft"
-        ) {
-          return;
-        }
+      if (!validChars.test(e.key) && !controlKeys.includes(e.key)) {
         e.preventDefault();
       }
     });
