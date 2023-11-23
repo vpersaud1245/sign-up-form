@@ -121,7 +121,6 @@ inputs.forEach((input) => {
     // returning it to less than 10 characters
     input.addEventListener("focus", (e) => {
       if (input.value.match(/\(\d{3}\) \d{3}-\d{4}/)) {
-        console.log("It matches");
         input.value = input.value.replace(/\D/g, "");
       }
     });
